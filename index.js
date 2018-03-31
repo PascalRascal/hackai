@@ -149,6 +149,7 @@ let parseArguments = (json, id) => {
             settings[i] = json[i]
         }
     }
+    console.log(json.styles)
 
     // Build our style images
     json.styles.forEach((style, i) => {
@@ -170,7 +171,8 @@ let parseArguments = (json, id) => {
     // TODO: Handle Style input
 
     // Apply specific flaggs
-    if(json["original_colors"] == true) {
+    console.log(json["original_colors"])
+    if(json["original_colors"] == true || json["original_colors"] == "true") {
         settingString += "--original_colors"
     }
 
