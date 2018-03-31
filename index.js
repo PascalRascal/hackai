@@ -70,10 +70,9 @@ app.post('/transfer_style/', (req, res) => {
     // MAYBE VERIFY THAT ITS VALID
     let id = createId()
     // Tell the user where they can wait
-    res.json({id: id})
     createInput(id, json).then((results) => {
         console.log("Input created")
-        
+        res.json({id: id})
         // Parse Command line arguments
         let args = parseArguments(json.settings, id)
         console.log(args)
