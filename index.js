@@ -106,13 +106,21 @@ let saveImage = (base64string, path) => {
 let createInput = (id, json) => {
     // Save content image
     mkpath.sync("./inputs/" + id)
-
+    var styleImage;
     // Save content Image
     let contentImageSave = saveImage(json.contentImage, "./inputs/" + id + "/content.jpg")
+    if(json.styleImage){
+        json.settings.customStyle = true
+        styleImage = saveImage(json.contentImage, "./inputs/" + id + "/style.jpg")
+    }
     // Save settings
     let jsonSave = writeJSON("./inputs/" + id + "/settings.json", json.settings)
-
-    return Promise.all([contentImageSave, jsonSave])
+    // This might be uneccsary
+    if(styleImage){
+        return Promise.all([contentImageSave, jsonSave, styleImage])
+    } else {
+        return Promise.all([contentImageSave, jsonSave])
+    }
 }
 
 let createId = () => {
@@ -152,16 +160,20 @@ let parseArguments = (json, id) => {
     console.log(json.styles)
 
     // Build our style images
-    json.styles.forEach((style, i) => {
-        console.log(style)
-        // If we have a valid style
-        // This is like this because of old, im too proud to rewrite it right now
-        if(styles[style] && i != json.styles.length - 1){
-            settings["style_imgs"] += styles[style] + " "
-        } else if (styles[style] && i == json.styles.length - 1){
-            settings["style_imgs"] += styles[style]
-        }
-    })
+    if(json.customStyle == true){
+        settings["style_imgs_dir"] = "./inputs/" + id
+        settings["style_imgs"] = "style.jpg"
+    } else {
+        json.styles.forEach((style, i) => {
+            // If we have a valid style
+            // This is like this because of old, im too proud to rewrite it right now
+            if(styles[style] && i != json.styles.length - 1){
+                settings["style_imgs"] += styles[style] + " "
+            } else if (styles[style] && i == json.styles.length - 1){
+                settings["style_imgs"] += styles[style]
+            }
+        })
+    }
 
     // Build our setting strings
     for(var i in settings){
