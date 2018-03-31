@@ -10,3 +10,12 @@
 input[type="radio"]:checked + label {
     border: 1px solid red;
 }
+
+.borderClass{
+    border-color: #C1E0FF;
+    border-width:1px;
+    border-style: solid;
+    /** OR USE INLINE
+    border: 1px solid #C1E0FF;
+    **/
+  }

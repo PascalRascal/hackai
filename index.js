@@ -1,19 +1,37 @@
 const express = require('express')
 const app = express()
+const path = require('path');
+
 var bodyParser = require('body-parser')
 var mkpath = require('mkpath');
 var fs = require('mz/fs')
 var exec = require('child_process').exec
 
 var jsonfile = require('jsonfile')
+app.use(express.static('front_end'))
+app.use('/styles', express.static('styles'))
+app.use('/run', express.static('inputs'))
+
+
+
 
 let queue = []
 // INCOMPLETE!!!!
 let styles = {
     "kand": "kandinsky.jpg",
     "starry": "starry-night.jpg",
-    "ship": "shipwreck.jpg"
+    "ship": "shipwreck.jpg",
+    "seated": "seated-nude.jpg",
+    "scream": "the_scream.jpg",
+    "woman": "woman-with-hat-matisse.jpg"
 }
+
+// Shitty security
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 
 let state = {}
@@ -23,7 +41,10 @@ app.use(express.json({limit: '50mb'}));
 // We have SHIT security so watch this ROFL
 app.use(express.urlencoded({limit: '50mb'}));
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) =>  {
+    res.sendFile(path.join(__dirname + '/front_end/home.html'));
+
+})
 
 /*
     JSON Structure:
@@ -115,7 +136,7 @@ let parseArguments = (json, id) => {
     let settings = {
         "img_output_dir" : "./inputs/" + id,
         "content_img_dir": "./inputs/" + id,
-        "style_imgs": "starry-night.jpg",
+        "style_imgs": "",
         "max_size": "100",
         "content_img": "content.jpg",
         "max_iterations": "100",
@@ -128,6 +149,18 @@ let parseArguments = (json, id) => {
             settings[i] = json[i]
         }
     }
+
+    // Build our style images
+    json.styles.forEach((style, i) => {
+        console.log(style)
+        // If we have a valid style
+        // This is like this because of old, im too proud to rewrite it right now
+        if(styles[style] && i != json.styles.length - 1){
+            settings["style_imgs"] += styles[style] + " "
+        } else if (styles[style] && i == json.styles.length - 1){
+            settings["style_imgs"] += styles[style]
+        }
+    })
 
     // Build our setting strings
     for(var i in settings){

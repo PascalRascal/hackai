@@ -2,45 +2,31 @@
 <html>
 <head>
   <title>Worthwhile Neuralstyle</title>
-  <link rel="stylesheet" type="text/css" href="home.css">
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="js/home.js"></script>
 </head>
 <body>
   <div style="text-align: center;">
     <h1>Here at Worthwhile Neuralstyle we make your Neuralstyle Worthwhile!</h1>
 
     <br>
-    <form>
-      <input id="id_input_image" name="input_image" type="file">
+    <input id="userFile" type="file">
 
       <p>Choose a style</p>
-      <div class="button">
-        <input type="radio" name="style" value="a" id="a" />
-        <label for="a"><img src="../styles/kandinsky.jpg" alt="kandinsky" class="styles"></label>
-      </div>
-      <div class="button">
-        <input type="radio" name="style" value="b" id="b" />
-        <label for="b"><img src="../styles/seated-nude.jpg" alt="seated-nude" class="styles"></label>
-      </div>
-      <div class="button">
-        <input type="radio" name="style" value="c" id="c" />
-        <label for="c"><img src="../styles/shipwreck.jpg" alt="shipwreck" class="styles"></label>
-      </div>
-      <div class="button">
-        <input type="radio" name="style" value="d" id="d" />
-      <label for="d"><img src="../styles/starry-night.jpg" alt="starry-night" class="styles"></label>
-    </div>
-    <div class="button">
-      <input type="radio" name="style" value="e" id="e" />
-      <label for="e"><img src="../styles/the_scream.jpg" alt="the_scream" class="styles"></label>
-    </div>
-    <div class="button">
-      <input type="radio" name="style" value="f" id="f" />
-      <label for="f"><img src="../styles/woman-with-hat-matisse.jpg" alt="woman-with-hat-matisse" class="styles"></label>
-    </div>
+    <img src="/styles/kandinsky.jpg" alt="kandinsky" class="styles" key="kand"/>
+    <img src="/styles/seated-nude.jpg" alt="seated-nude" class="styles" key="seated"/>
+    <img src="/styles/shipwreck.jpg" alt="shipwreck" class="styles" key="ship"/>
+    <img src="/styles/starry-night.jpg" alt="starry-night" class="styles" key="starry"/>
+    <img src="/styles/the_scream.jpg" alt="the_scream" class="styles" key="scream"/>
+    <img src="/styles/woman-with-hat-matisse.jpg" alt="woman-with-hat-matisse" class="styles" key="woman"/>
       <br>
       <br>
-      <input type="submit" value="Submit">
-  </form>
+  <button id="submit"> Submit </button>
+
 
 </body>
 </html>
