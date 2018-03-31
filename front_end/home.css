@@ -1,0 +1,12 @@
+.styles {
+  padding: 20px;
+  height: auto;
+  width: 20%;
+}
+.button input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + label {
+    border: 1px solid red;
+}
