@@ -1,7 +1,8 @@
 var settingJson = {
     styles: [],
     keep_colors: false,
-    max_iterations: "500"
+    max_iterations: "200",
+    max_size: "500"
 }
 let styles = {
     "kand": false,
@@ -32,11 +33,17 @@ $(function(){
         var myFile = $('#userFile').prop('files')[0];
         getBase64(myFile, function(b64) {
             // Add our selected styles to our post json
+            settingJson.styles = []
             Object.keys(styles).forEach(function(key){
                 if(styles[key] == true){
                     settingJson.styles.push(key)
                 }
             })
+            // If they didnt do anything just assume starry
+            // TODO: DONT LET THIS BREAK CUSTOM STYLE IMAGES
+            if(settingJson.styles.length = 0){
+                settingJson.styles.push('starry')
+            }
             console.log('Our Settings Json')
             console.log(settingJson)
             $.post(url, {
