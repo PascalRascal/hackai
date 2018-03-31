@@ -114,6 +114,7 @@ $(function(){
                 }).done(function(resp){
                     console.log('ID!')
                     console.log(resp)
+                    window.location.href = "http://35.190.182.42/run/" + resp.id
                 })
             }
             
