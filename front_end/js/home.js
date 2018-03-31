@@ -14,7 +14,7 @@ let styles = {
 }
 $(function(){
     var ip = "35.190.182.42"
-    var url = "http://localhost/transfer_style/"
+    var url = "http://35.190.182.42/transfer_style/"
     $("#userFile").click(function() {
 
     })
@@ -72,8 +72,9 @@ $(function(){
                         ],
                         settings: settingJson
                     }).done(function(resp){
-                        console.log('ID!')
+                        console.log('FUG')
                         console.log(resp)
+                        window.location.href = "http://35.190.182.42/run/" + resp.id
                     })
                     
                 })
