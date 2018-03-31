@@ -1,7 +1,9 @@
 .styles {
-  padding: 20px;
+  padding: 10px;
   height: auto;
-  width: 20%;
+  max-height: 200px;
+  /**height: 300px;**/
+  width: 25%;
 }
 .button input[type="radio"] {
     display: none;
@@ -13,9 +15,9 @@ input[type="radio"]:checked + label {
 
 .borderClass{
     border-color: #C1E0FF;
-    border-width:1px;
+    border-width: 1px;
     border-style: solid;
-    border-radius: 2px;
+    margin: auto;
     /** OR USE INLINE
     border: 1px solid #C1E0FF;
     **/

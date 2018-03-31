@@ -34,9 +34,25 @@
     <h1>Here at Worthwhile Neuralstyle we make your Neuralstyle Worthwhile!</h1>
 
     <br>
-    <input id="userFile" type="file">
 
-      <p>Choose a style</p>
+
+
+    <div id='page' style='width: 30px; display: inline-block'>
+       <h2 style='border:2px black solid; font-size:42px;'>1</h2>
+     </div>
+     <h2 style = 'display: inline-block'>Upload Image</h2>
+     <br>
+     <input id="userFile" type="file">
+
+
+     <div id='page' style='width: 30px; display: inline-block'>
+        <h2 style='border:2px black solid; font-size:42px;'>2</h2>
+      </div>
+      <h2 style = 'display: inline-block'><p>Choose a Style</p></h2>
+      <br>
+      <p> OR Upload Your Own Style Image!!!!!!! </p>
+      <input id="styleImage" type="file" >
+
     <img src="/styles/kandinsky.jpg" alt="kandinsky" class="styles" key="kand"/>
     <img src="/styles/seated-nude.jpg" alt="seated-nude" class="styles" key="seated"/>
     <img src="/styles/shipwreck.jpg" alt="shipwreck" class="styles" key="ship"/>
@@ -44,9 +60,13 @@
     <img src="/styles/the_scream.jpg" alt="the_scream" class="styles" key="scream"/>
     <img src="/styles/woman-with-hat-matisse.jpg" alt="woman-with-hat-matisse" class="styles" key="woman"/>
       <br>
-      <br>
-      <p> OR Upload Your Own Style Image!!!!!!! </p>
-      <input id="styleImage" type="file" >
+
+      <div id='page' style='width: 30px; display: inline-block'>
+         <h2 style='border:2px black solid; font-size:42px;'>3</h2>
+       </div>
+       <h2 style = 'display: inline-block'><p>Custom Options</p></h2>
+       <br>
+
   <div>
     <div>Max Size</div>
     <input id="max_size" type="number" value="250">
@@ -59,6 +79,12 @@
     <div>Keep Original Colors</div>
     <input id="original_colors" type="checkbox">
   </div>
+
+  <div id='page' style='width: 30px; display: inline-block'>
+     <h2 style='border:2px black solid; font-size:42px;'>4</h2>
+   </div>
+   <h2 style = 'display: inline-block'><p>Transfer Style to Image!</p></h2>
+   <br>
   <button id="submit" > Submit </button>
 
   </body>
