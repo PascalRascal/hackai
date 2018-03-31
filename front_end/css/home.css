@@ -15,6 +15,7 @@ input[type="radio"]:checked + label {
     border-color: #C1E0FF;
     border-width:1px;
     border-style: solid;
+    border-radius: 2px;
     /** OR USE INLINE
     border: 1px solid #C1E0FF;
     **/
