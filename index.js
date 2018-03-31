@@ -112,7 +112,7 @@ let createInput = (id, json) => {
     let contentImageSave = saveImage(json.contentImage, "./inputs/" + id + "/content.jpg")
     if(json.styleImage){
         json.settings.customStyle = true
-        styleImage = saveImage(json.contentImage, "./inputs/" + id + "/style.jpg")
+        styleImage = saveImage(json.styleImage, "./inputs/" + id + "/style.jpg")
     }
     // Save settings
     let jsonSave = writeJSON("./inputs/" + id + "/settings.json", json.settings)
