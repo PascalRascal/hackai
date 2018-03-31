@@ -13,8 +13,8 @@ let styles = {
     "woman": false
 }
 $(function(){
-    let ip = "35.190.182.42"
-    let url = "http://localhost/transfer_style/"
+    var ip = "35.190.182.42"
+    var url = "http://localhost/transfer_style/"
     $("#userFile").click(function() {
 
     })
@@ -37,6 +37,7 @@ $(function(){
         getBase64(myFile, function(b64) {
             if(hasCustomStyle){
                 var styleImage = $('#styleImage').prop('files')[0];
+                console.log(styleImage)
                 getBase64(styleImage, function(b642) {
                     // Clear our style json!
                     settingJson.styles = []
@@ -74,6 +75,7 @@ $(function(){
                         console.log('ID!')
                         console.log(resp)
                     })
+                    
                 })
             } else {
             
@@ -117,7 +119,6 @@ $(function(){
             
             
         })
-        console.log(myFile)
     })
 
 })

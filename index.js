@@ -73,6 +73,7 @@ app.post('/transfer_style/', (req, res) => {
     res.json({id: id})
     createInput(id, json).then((results) => {
         console.log("Input created")
+        
         // Parse Command line arguments
         let args = parseArguments(json.settings, id)
         console.log(args)
@@ -111,15 +112,18 @@ let createInput = (id, json) => {
     let contentImageSave = saveImage(json.contentImage, "./inputs/" + id + "/content.jpg")
     if(json.styleImage){
         json.settings.customStyle = true
-        styleImage = saveImage(json.contentImage, "./inputs/" + id + "/style.jpg")
+        styleImage = saveImage(json.styleImage, "./inputs/" + id + "/style.jpg")
     }
     // Save settings
     let jsonSave = writeJSON("./inputs/" + id + "/settings.json", json.settings)
+
+    // Create our html file 
+    let indexCreate = copyFile("./front_end/view.html", "./inputs/" + id + "/index.html")
     // This might be uneccsary
     if(styleImage){
-        return Promise.all([contentImageSave, jsonSave, styleImage])
+        return Promise.all([contentImageSave, jsonSave, styleImage, indexCreate])
     } else {
-        return Promise.all([contentImageSave, jsonSave])
+        return Promise.all([contentImageSave, jsonSave, indexCreate])
     }
 }
 
@@ -190,3 +194,18 @@ let parseArguments = (json, id) => {
 
     return settingString
 }
+
+function copyFile(source, target) {
+    var rd = fs.createReadStream(source);
+    var wr = fs.createWriteStream(target);
+    return new Promise(function(resolve, reject) {
+      rd.on('error', reject);
+      wr.on('error', reject);
+      wr.on('finish', resolve);
+      rd.pipe(wr);
+    }).catch(function(error) {
+      rd.destroy();
+      wr.end();
+      throw error;
+    });
+  }
