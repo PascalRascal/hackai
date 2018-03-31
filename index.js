@@ -19,7 +19,9 @@ let styles = {
 let state = {}
 // Set up JSON
 // parse various different custom JSON types as JSON
-app.use(express.json())
+app.use(express.json({limit: '50mb'}));
+// We have SHIT security so watch this ROFL
+app.use(express.urlencoded({limit: '50mb'}));
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
